@@ -9,13 +9,16 @@ Juego de la vida por Jesús Alfredo Navarro Guzmán
 #define width 20 //ancho de la malla
 
 int **crearMalla(int, int);
-void setUpM(**int);
-void vistaS(**int);
+void setUpM(int**);
+void vistaS(int**);
 
 int main(void){
     int **Malla1, **Malla2;
     Malla1 = crearMalla(width, height);
-    Malla2 = crearMalla(width, height);
+
+ //   Malla2 = crearMalla(width, height);
+    setUpM(Malla1);
+    vistaS(Malla1);
 }
 
 int **crearMalla(int w, int h){
@@ -34,19 +37,19 @@ int **crearMalla(int w, int h){
     }
     return x;
 }
-void setUpM(**int M){
+void setUpM(int **M){
     int i, j;
-    for(i = 0; i < sizeof(M)/sizeof(*M), i++){
-        for(j = 0; j < sizeof(*M)/sizeof(**M), j++){
+    for(i = 0; i < width; i++){
+        for(j = 0; j < height; j++){
             M[i][j]=0;
         }
     }
 }
-void vistaS(**int v){
+void vistaS(int **v){
     int i, j;
-    for(i = 0; i < sizeof(M)/sizeof(*M), i++){
-        for(j = 0; j < sizeof(*M)/sizeof(**M), j++){
-            printf("%i\t", M[i][j]);
+    for(i = 0; i < width; i++){
+        for(j = 0; j < height; j++){
+            printf("%i\t", v[i][j]);
         }
         printf("\n");
     }
