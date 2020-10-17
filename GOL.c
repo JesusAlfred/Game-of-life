@@ -5,8 +5,9 @@ Juego de la vida por Jesús Alfredo Navarro Guzmán
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
+#include <math.h>
 
-#define height 50 //alto de la malla
+#define height 30 //alto de la malla
 #define width 50 //ancho de la malla
 
 int **crearMalla(int, int);
@@ -23,6 +24,7 @@ int main(void){
     Malla2 = crearMalla(width, height);
     setUpM(Malla1);
     setUpM(Malla2);
+    window(1, 1, width*2, height);
     pinicial(Malla1);
     do{
         if(s==1){
@@ -79,7 +81,7 @@ void actualizarV(int **m1, int **m2){
         for (j = 0; j < height; j++){
             if(m2[i][j] != m1[i][j]){
                 textcolor(m2[i][j]);
-                gotoxy((i+1)*2, j+1);
+                gotoxy(i*2+1, j+1);
                 cprintf("%c%c", 219, 219);
             }
         }
@@ -113,21 +115,21 @@ void pinicial(int **M2){
                 lab = 0;
                 break;
         }
-        x = x%width;
-        y = y%height;
+        x=(x+(abs(x)-x)*width/2)%width;
+        y=(y+(abs(y)-y)*height/2)%height;
         if(lab == 1){
             textcolor(M2[x2][y2]);
-            gotoxy((x2+1)*2, y2+1);
+            gotoxy(x2*2+1, y2+1);
             cprintf("%c%c", 219, 219);
             textcolor(RED);
-            gotoxy((x+1)*2, y+1);
+            gotoxy(x*2+1, y+1);
             cprintf("%c%c", 219, 219);
             x2 = x;
             y2 = y;
         }
     }while(e != 'q');
     textcolor(M2[x2][y2]);
-    gotoxy((x2+1)*2, y2+1);
+    gotoxy(x2*2+1, y2+1);
     cprintf("%c%c", 219, 219);
 }
 void copiarM(int **M1, int **M2){
